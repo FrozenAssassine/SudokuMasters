@@ -13,6 +13,8 @@ class Sudoku {
 
   int get(int x, int y) => gameArea[x + y * 9];
 
+  int getP(Point p) => gameArea[p.x + p.y * 9];
+
   void set(int x, int y, int value) => gameArea[x + y * 9] = value;
 
   bool isFree(int x, int y) => get(x, y) == EMPTYSLOT;
