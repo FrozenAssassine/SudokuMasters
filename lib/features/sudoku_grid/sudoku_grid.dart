@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sudoku_masters/features/backend/sudoku.dart';
 import 'package:sudoku_masters/features/sudoku_grid_item/sudoku_grid_item.dart';
 
 class SudokuGrid extends StatefulWidget {
-  SudokuGrid({super.key});
+  final Sudoku? sudoku;
+  SudokuGrid(this.sudoku, {super.key});
 
   @override
   _SudokuGridState createState() => _SudokuGridState();
@@ -27,7 +29,7 @@ class _SudokuGridState extends State<SudokuGrid> {
                   child: Container(
                     margin: EdgeInsets.all(4.0),
                     color: Colors.tealAccent,
-                    child: Center(child: SudokuGridItem(index)),
+                    child: Center(child: SudokuGridItem(widget.sudoku, index)),
                   ),
                 );
               }),

@@ -3,6 +3,9 @@ import 'point.dart';
 class Sudoku {
   static const int EMPTYSLOT = -1;
 
+  Point currentP = Point(0, 0);
+  bool isActive = false;
+
   List<int> gameArea = List.filled(81, EMPTYSLOT);
 
   int operator [](Point pos) => get(pos.x, pos.y);
