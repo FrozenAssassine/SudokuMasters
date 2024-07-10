@@ -26,7 +26,7 @@ class _SudokuGridState extends State<SudokuGrid> {
                 return Expanded(
                   child: Container(
                     margin: EdgeInsets.all(4.0),
-                    color: Colors.green,
+                    color: Colors.tealAccent,
                     child: Center(child: SudokuGridItem(index)),
                   ),
                 );
