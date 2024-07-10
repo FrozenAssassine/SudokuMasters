@@ -13,7 +13,7 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(5.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(3, (row) {
@@ -28,11 +28,11 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
                       // You can add more logic here to handle the tap event
                     },
                     child: Container(
-                      margin: EdgeInsets.all(4.0),
+                      margin: EdgeInsets.all(2),
                       color: Colors.blueAccent,
                       child: Center(
                         child: Text(
-                          'Index: $index',
+                          '$index',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

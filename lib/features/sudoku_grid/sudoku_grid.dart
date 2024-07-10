@@ -15,7 +15,7 @@ class _SudokuGridState extends State<SudokuGrid> {
 
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(3, (row) {
@@ -25,8 +25,8 @@ class _SudokuGridState extends State<SudokuGrid> {
                 int index = row * 3 + col;
                 return Expanded(
                   child: Container(
-                    margin: EdgeInsets.all(4.0),
-                    color: Colors.tealAccent,
+                    margin: EdgeInsets.all(0),
+                    color: Colors.pinkAccent,
                     child: Center(child: SudokuGridItem(index)),
                   ),
                 );
