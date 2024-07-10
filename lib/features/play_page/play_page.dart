@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sudoku_masters/features/sudoku_grid/sudoku_grid.dart';
+import 'package:sudoku_masters/features/sudoku_keyboard/sudoku_keyboard.dart';
 
 class PlayPage extends StatelessWidget {
   const PlayPage({super.key});
@@ -11,17 +12,16 @@ class PlayPage extends StatelessWidget {
         children: [
           Expanded(
             flex: 8,
-            child: Container(color: Colors.blue, child: SudokuGrid()),
+            child: SudokuGrid(),
           ),
           Expanded(
             flex: 2,
             child: Container(
-              color: Colors.green,
-              child: const Center(
-                child: Text(
-                  '20%',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
-                ),
+              child: SudokuKeyboard(
+                onIndexChanged: (index) {
+                  print('Keyboard index: $index');
+                  // Handle the index as needed
+                },
               ),
             ),
           ),
