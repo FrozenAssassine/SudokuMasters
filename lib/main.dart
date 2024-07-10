@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sudoku_masters/features/play_page/play_page.dart';
 import 'package:sudoku_masters/features/sudoku_grid/sudoku_grid.dart';
 
 void main() {
@@ -11,10 +12,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: SudokuGrid(),
-        ),
+      home: SafeArea(
+        child: PlayPage(),
       ),
     );
   }

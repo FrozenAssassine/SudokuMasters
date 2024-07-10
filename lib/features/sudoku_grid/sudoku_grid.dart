@@ -1,46 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:sudoku_masters/features/sudoku_grid_item/sudoku_grid_item.dart';
 
 class SudokuGrid extends StatefulWidget {
-  const SudokuGrid({super.key});
+  SudokuGrid({super.key});
 
   @override
   _SudokuGridState createState() => _SudokuGridState();
 }
 
 class _SudokuGridState extends State<SudokuGrid> {
-  @override
+  void _test() {
+    print('PRESSED');
+  }
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sudoku Grid'),
-      ),
-      body: Center(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 9, // 9 columns for a Sudoku grid
-          ),
-          itemCount: 81, // 9x9 grid, so 81 cells
-          itemBuilder: (context, index) {
-            return GridTile(
-              child: GestureDetector(
-                onTap: () {
-                  // Handle cell tap
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(3, (row) {
+          return Expanded(
+            child: Row(
+              children: List.generate(3, (col) {
+                int index = row * 3 + col;
+                return Expanded(
+                  child: Container(
+                    margin: EdgeInsets.all(4.0),
+                    color: Colors.green,
+                    child: Center(child: SudokuGridItem(index)),
                   ),
-                  child: const Center(
-                    child: Text(
-                      '', // Display the number here if you have one
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+                );
+              }),
+            ),
+          );
+        }),
       ),
     );
   }
