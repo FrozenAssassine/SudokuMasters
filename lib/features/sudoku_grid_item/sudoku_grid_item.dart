@@ -25,6 +25,7 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
                   child: GestureDetector(
                     onTap: () {
                       print('Cell ${widget.gridCellIndex}, ${index} tapped');
+                      print('X: ${(widget.gridCellIndex % 3) * 3 + (index % 3)}, Y: ${(widget.gridCellIndex - (widget.gridCellIndex % 3) + ((index - (index % 3))/3)).round()}');
                       // You can add more logic here to handle the tap event
                     },
                     child: Container(
