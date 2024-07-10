@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sudoku_masters/features/backend/point.dart';
+import 'package:sudoku_masters/features/backend/sudoku.dart';
 
 class SudokuGridItem extends StatefulWidget {
   final int gridCellIndex;
+  final Sudoku? sudoku;
 
-  SudokuGridItem(this.gridCellIndex);
+  SudokuGridItem(this.sudoku, this.gridCellIndex);
 
   @override
   State<SudokuGridItem> createState() => _SudokuGridItemState();
@@ -25,7 +28,9 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
                   child: GestureDetector(
                     onTap: () {
                       print('Cell ${widget.gridCellIndex}, ${index} tapped');
-                      // You can add more logic here to handle the tap event
+                      print('X: ${(widget.gridCellIndex % 3) * 3 + (index % 3)}, Y: ${(widget.gridCellIndex - (widget.gridCellIndex % 3) + ((index - (index % 3))/3)).round()}');
+                      widget.sudoku?.currentP = Point((widget.gridCellIndex % 3) * 3 + (index % 3), (widget.gridCellIndex - (widget.gridCellIndex % 3) + ((index - (index % 3))/3)).round());
+                      widget.sudoku?.isActive = true;
                     },
                     child: Container(
                       margin: EdgeInsets.all(2),
