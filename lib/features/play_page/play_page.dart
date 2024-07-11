@@ -7,7 +7,6 @@ import 'package:sudoku_masters/features/sudoku_keyboard/sudoku_keyboard.dart';
 class PlayPage extends StatelessWidget {
   PlayPage({super.key});
   Sudoku sudoku = SudokuGenerator().generate();
-  // UI update here (sudoku.get)
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +27,9 @@ class PlayPage extends StatelessWidget {
                     sudoku.set(sudoku.currentP.x, sudoku.currentP.y, index);
                     sudoku.isActive = false;
                     // UI update here
+                    if(sudoku.isValidSolved()){
+                      // THE USER WINS
+                    }
                   }
                 },
               ),

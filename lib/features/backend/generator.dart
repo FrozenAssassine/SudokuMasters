@@ -11,7 +11,9 @@ class SudokuGenerator {
   Difficulty difficulty = Difficulty.Easy;
 
   Sudoku generate() {
-    return generateWithSeed(DateTime.now().millisecondsSinceEpoch);
+    Sudoku s = generateWithSeed(DateTime.now().millisecondsSinceEpoch);
+    s.original = s.clone();
+    return s;
   }
 
   Sudoku generateWithSeed(int seed) {
