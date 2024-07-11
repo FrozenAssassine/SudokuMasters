@@ -5,13 +5,17 @@ import 'point.dart';
 
 enum Difficulty { Easy, Hard }
 
-enum ExamineResult { MultipleSolutions, LogicalInferable, OneSolutionNotLogicalInferable }
+enum ExamineResult {
+  MultipleSolutions,
+  LogicalInferable,
+  OneSolutionNotLogicalInferable
+}
 
 class SudokuGenerator {
   Difficulty difficulty = Difficulty.Easy;
 
   Sudoku generate() {
-    return generateWithSeed(DateTime.now().millisecondsSinceEpoch);
+    return Sudoku(); //generateWithSeed(DateTime.now().millisecondsSinceEpoch);
   }
 
   Sudoku generateWithSeed(int seed) {
@@ -35,7 +39,8 @@ class SudokuGenerator {
     ExamineResult res = examine(clone.clone());
     remaining.removeAt(n);
     if (res == ExamineResult.MultipleSolutions ||
-        (res == ExamineResult.OneSolutionNotLogicalInferable && difficulty == Difficulty.Easy)) {
+        (res == ExamineResult.OneSolutionNotLogicalInferable &&
+            difficulty == Difficulty.Easy)) {
       if (remaining.isEmpty) return sudoku;
       return makeHarder(sudoku, r, remaining);
     }
@@ -87,7 +92,8 @@ class SudokuGenerator {
     var possibility = possibilities[r.nextInt(possibilities.length)];
     if (possibility['possibleNums'].isEmpty) return sudoku;
     sudoku[Point(possibility['x'], possibility['y'])] =
-        possibility['possibleNums'][r.nextInt(possibility['possibleNums'].length)];
+        possibility['possibleNums']
+            [r.nextInt(possibility['possibleNums'].length)];
 
     return generateRecursive(sudoku, r);
   }
@@ -136,8 +142,10 @@ class SudokuGenerator {
       newTry[Point(possibilities[0]['x'], possibilities[0]['y'])] =
           possibilities[0]['possibleNums'][i];
       ExamineResult res = examine(newTry);
-      if (res == ExamineResult.MultipleSolutions) return ExamineResult.MultipleSolutions;
-      if (possibleEndings.any((e) => e == newTry)) return ExamineResult.MultipleSolutions;
+      if (res == ExamineResult.MultipleSolutions)
+        return ExamineResult.MultipleSolutions;
+      if (possibleEndings.any((e) => e == newTry))
+        return ExamineResult.MultipleSolutions;
       possibleEndings.add(newTry);
     }
 

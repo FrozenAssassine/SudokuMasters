@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sudoku_masters/features/backend/generator.dart';
 import 'package:sudoku_masters/features/play_page/play_page.dart';
-import 'package:sudoku_masters/features/sudoku_grid/sudoku_grid.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SudokuGenerator().generate(),
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {

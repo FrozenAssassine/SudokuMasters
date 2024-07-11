@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'point.dart';
 
-class Sudoku {
+class Sudoku extends ChangeNotifier {
   static const int EMPTYSLOT = -1;
 
   Point currentP = Point(0, 0);
@@ -15,7 +17,10 @@ class Sudoku {
 
   int getP(Point p) => gameArea[p.x + p.y * 9];
 
-  void set(int x, int y, int value) => gameArea[x + y * 9] = value;
+  void set(int x, int y, int value) {
+    gameArea[x + y * 9] = value;
+    notifyListeners();
+  }
 
   bool isFree(int x, int y) => get(x, y) == EMPTYSLOT;
 
@@ -55,12 +60,18 @@ class Sudoku {
     for (int y = 0; y < 9; y++) {
       for (int x = 0; x < 9; x++) {
         if (this[Point(x, y)] == EMPTYSLOT) return false;
-        if (blocks[(x ~/ 3) + (y ~/ 3) * 3].contains(this[Point(x, y)])) return false;
-        else blocks[(x ~/ 3) + (y ~/ 3) * 3].add(this[Point(x, y)]);
-        if (rows[y].contains(this[Point(x, y)])) return false;
-        else rows[y].add(this[Point(x, y)]);
-        if (columns[x].contains(this[Point(x, y)])) return false;
-        else columns[x].add(this[Point(x, y)]);
+        if (blocks[(x ~/ 3) + (y ~/ 3) * 3].contains(this[Point(x, y)]))
+          return false;
+        else
+          blocks[(x ~/ 3) + (y ~/ 3) * 3].add(this[Point(x, y)]);
+        if (rows[y].contains(this[Point(x, y)]))
+          return false;
+        else
+          rows[y].add(this[Point(x, y)]);
+        if (columns[x].contains(this[Point(x, y)]))
+          return false;
+        else
+          columns[x].add(this[Point(x, y)]);
       }
     }
 
