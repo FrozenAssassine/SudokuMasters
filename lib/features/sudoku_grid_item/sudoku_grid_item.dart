@@ -39,8 +39,11 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
                       print('Cell ${widget.gridCellIndex}, ${index} tapped');
                       print(
                           'X: ${(widget.gridCellIndex % 3) * 3 + (index % 3)}, Y: ${(widget.gridCellIndex - (widget.gridCellIndex % 3) + ((index - (index % 3)) / 3)).round()}');
-                      widget.sudoku?.currentP = _getCoords(index);
-                      widget.sudoku?.isActive = true;
+                      Point p = _getCoords(index);
+                      widget.sudoku?.currentP = p;
+                      if (widget.sudoku?.original?.isFree(p.x, p.y) ?? false) {
+                        widget.sudoku?.isActive = true;
+                      }
                     },
                     child: Container(
                       margin: EdgeInsets.all(2),

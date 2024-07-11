@@ -7,6 +7,7 @@ class Sudoku extends ChangeNotifier {
 
   Point currentP = Point(0, 0);
   bool isActive = false;
+  Sudoku? original;
 
   List<int> gameArea = List.filled(81, EMPTYSLOT);
 
