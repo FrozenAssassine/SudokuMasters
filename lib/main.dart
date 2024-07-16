@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sudoku_masters/features/backend/generator.dart';
-import 'package:sudoku_masters/features/play_page/play_page.dart';
+import 'package:flutter_fullscreen/flutter_fullscreen.dart';
+import 'package:sudoku_masters/features/home_page/home_page.dart';
 
-void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => SudokuGenerator().generate(),
-      child: const MainApp(),
-    ),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FullScreen.ensureInitialized();
+  FullScreen.setFullScreen(true);
+
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -17,9 +15,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: SafeArea(
-        child: PlayPage(),
+        child: HomePage(),
       ),
     );
   }

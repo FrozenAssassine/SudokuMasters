@@ -14,7 +14,9 @@ enum ExamineResult {
 class SudokuGenerator {
   Difficulty difficulty = Difficulty.Easy;
 
-  Sudoku generate() {
+  Sudoku generate(Difficulty difficulty) {
+    this.difficulty = difficulty;
+
     Sudoku s = generateWithSeed(DateTime.now().millisecondsSinceEpoch);
     s.original = s.clone();
     return s;

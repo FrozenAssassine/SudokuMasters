@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sudoku_masters/features/backend/point.dart';
 import 'package:sudoku_masters/features/backend/sudoku.dart';
@@ -25,7 +26,7 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(2),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(3, (row) {
@@ -36,23 +37,20 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
                 return Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      print('Cell ${widget.gridCellIndex}, ${index} tapped');
-                      print(
-                          'X: ${(widget.gridCellIndex % 3) * 3 + (index % 3)}, Y: ${(widget.gridCellIndex - (widget.gridCellIndex % 3) + ((index - (index % 3)) / 3)).round()}');
                       Point p = _getCoords(index);
                       widget.sudoku?.currentP = p;
                       if (widget.sudoku?.original?.isFree(p.x, p.y) ?? false) {
                         widget.sudoku?.setActive(true);
-                        print("isActive ${widget.sudoku?.isActive}");
                       }
                     },
                     child: Container(
-                      margin: EdgeInsets.all(2),
+                      margin: const EdgeInsets.all(.5),
                       color: Colors.blueAccent,
                       child: Center(
-                        child: Text(
+                        child: AutoSizeText(
                           '${widget.sudoku?.getP(_getCoords(index)).toString().replaceAll("-1", "")}',
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 60),
                         ),
                       ),
                     ),
