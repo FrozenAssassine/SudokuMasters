@@ -6,7 +6,7 @@ class SudokuGridItem extends StatefulWidget {
   final int gridCellIndex;
   final Sudoku? sudoku;
 
-  SudokuGridItem(this.sudoku, this.gridCellIndex);
+  const SudokuGridItem(this.sudoku, this.gridCellIndex);
 
   @override
   State<SudokuGridItem> createState() => _SudokuGridItemState();
@@ -42,7 +42,8 @@ class _SudokuGridItemState extends State<SudokuGridItem> {
                       Point p = _getCoords(index);
                       widget.sudoku?.currentP = p;
                       if (widget.sudoku?.original?.isFree(p.x, p.y) ?? false) {
-                        widget.sudoku?.isActive = true;
+                        widget.sudoku?.setActive(true);
+                        print("isActive ${widget.sudoku?.isActive}");
                       }
                     },
                     child: Container(

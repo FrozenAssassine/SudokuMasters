@@ -6,7 +6,15 @@ class Sudoku extends ChangeNotifier {
   static const int EMPTYSLOT = -1;
 
   Point currentP = Point(0, 0);
-  bool isActive = false;
+  bool _isActive = false;
+
+  bool get isActive => _isActive;
+
+  void setActive(bool value) {
+    _isActive = value;
+    notifyListeners(); // Notify listeners about the change
+  }
+
   Sudoku? original;
 
   List<int> gameArea = List.filled(81, EMPTYSLOT);
