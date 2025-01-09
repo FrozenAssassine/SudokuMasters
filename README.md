@@ -1,3 +1,3 @@
-# sudoku_masters
+# 🎰 Sudoku Masters
 
-A new Flutter project.
+Simple Sudoku game made in Flutter with <a href="https://github.com/finn-freitag">Finn Freitag</a>
